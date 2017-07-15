@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Book a tutor</string>
+    <string name="email_address">john_doe@my.yorku.ca</string>
+    <string name="button_bookSession">Book A Session</string>
+    <string name="button_leaveReview">Leave A Review</string>
+    <string name="Text_chooseCourse">Which Course would you like help in?</string>
+    <string-array name="courses_list">
+        <item>EECS</item>
+        <item>MATH</item>
+        <item>PHYS</item>
+        <item>CHEM</item>
+        <item>ENG</item>
+    </string-array>
+    <string name="text_chooseDay">Please Choose A Day</string>
+    <string-array name="days_list">
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Any day</item>
+    </string-array>
+</resources>
