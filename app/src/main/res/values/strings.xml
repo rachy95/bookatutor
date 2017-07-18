@@ -1,6 +1,7 @@
 <resources>
-    <string name="app_name">Book a tutor</string>
-    <string name="email_address">john_doe@my.yorku.ca</string>
+    <string name="app_name">ExcelLassonde</string>
+    <string name="email_address">Email</string>
+    <string name="firstName">First Name</string>
     <string name="button_bookSession">Book A Session</string>
     <string name="button_leaveReview">Leave A Review</string>
     <string name="Text_chooseCourse">Which Course would you like help in?</string>
@@ -20,4 +21,9 @@
         <item>Friday</item>
         <item>Any day</item>
     </string-array>
+    <string name="monday">MON</string>
+    <string name="tuesday">TUE</string>
+    <string name="wednesday">WED</string>
+    <string name="thursday">THU</string>
+    <string name="friday">FRI</string>
 </resources>
