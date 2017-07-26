@@ -4,8 +4,10 @@
     <string name="firstName">First Name</string>
     <string name="button_bookSession">Book A Session</string>
     <string name="button_leaveReview">Leave A Review</string>
+    <string name="button_chooseTutor">Choose Your Tutor</string>
     <string name="Text_chooseCourse">Which Course would you like help in?</string>
     <string-array name="courses_list">
+        <item> </item>
         <item>EECS</item>
         <item>MATH</item>
         <item>PHYS</item>

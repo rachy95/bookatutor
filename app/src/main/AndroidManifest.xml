@@ -23,20 +23,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".LoginActivity" />
         </activity>
-        <activity
-            android:name=".ChooseTutorActivity"
-            android:parentActivityName=".ChooseCourseActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ChooseCourseActivity" />
-        </activity>
-        <activity android:name=".ChooseDayActivity" />
         <activity android:name=".ChooseDayAndTutor" />
-        <activity android:name=".MondayTab" />
-        <activity android:name=".TuesdayTab" />
-        <activity android:name=".WednesdayTab" />
-        <activity android:name=".ThursdayTab" />
-        <activity android:name=".FridayTab"></activity>
     </application>
 
 </manifest>

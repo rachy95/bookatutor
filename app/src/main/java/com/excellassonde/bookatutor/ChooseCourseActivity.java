@@ -11,8 +11,10 @@ import android.widget.Spinner;
 
 public class ChooseCourseActivity extends AppCompatActivity {
 
-    private Spinner spinner;
-    public static String courseSelected;
+      private Spinner spinner;
+      public static String courseSelected;
+      String courseChoice;
+      Button chooseTutorButton ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,10 +23,10 @@ public class ChooseCourseActivity extends AppCompatActivity {
 
     }
 
-    public void chooseCourse(View view){
+    public void goToChooseDayAndTutor(View view){
         spinner = (Spinner) findViewById(R.id.courses_dropdown);
-        Intent intent = new Intent(this, ChooseDayActivity.class);
-        String courseChoice = String.valueOf(spinner.getSelectedItem());
+        Intent intent = new Intent(this, ChooseDayAndTutor.class);
+        courseChoice = String.valueOf(spinner.getSelectedItem());
         intent.putExtra(courseSelected, courseChoice);
         startActivity(intent);
 
