@@ -4,6 +4,9 @@
     <Name>John Doe</Name>
     <Course>MATH, EECS</Course>
     <Availability>
+        <Day day="Monday">
+            <Time>9pm-10pm, 3pm-5pm</Time>
+        </Day>
         <Day day="Tuesday">
             <Time>9pm-10pm, 3pm-5pm</Time>
         </Day>
@@ -11,7 +14,7 @@
   </Tutor>
   <Tutor>
     <Name>Jane Bob</Name>
-    <Course>EECS 3311, MATH 1013, MATH 2930</Course>
+    <Course>PHYS, CHEM, MATH</Course>
     <Availability>
         <Day day="Wednesday">
             <Time>8am-4pm</Time>

@@ -34,32 +34,7 @@ public class WednesdayTab extends DaysTab {
         LinearLayout layout = (LinearLayout) view.findViewById(R.id.WednesdayTab);
         //get the list of tutors
         String day = "Wednesday";
-        String display = "";
-        Intent intent = getActivity().getIntent();
-        String course = intent.getStringExtra(ChooseCourseActivity.courseSelected);
-
-        TextView textView = new TextView(view.getContext());
-
-        if (AreTutorsAvailableThatDay(day)) {
-            List<Tutor> tutors = getTutors(day);
-            for (int i = 0; i < tutors.size(); i++) {
-                if(tutors.get(i).teachCourse(course)){
-                    List<String> times =  tutors.get(i).getTimes(day);
-                    for(int j = 0; j<times.size(); j++){
-                        display += tutors.get(i).name + ": " + times.get(j) + "\n";
-                    }
-
-                }
-                else{
-                    display = "Sorry, there are no tutors available for " + course + " on " + day;
-                }
-            }
-        } else {
-            display = "Sorry, there are no tutors available on " + day;
-        }
-
-        textView.setText(display);
-        layout.addView(textView);
+        setDisplay(day, view, layout);
         return view;
     }
 }

@@ -6,6 +6,17 @@
     <string name="button_leaveReview">Leave A Review</string>
     <string name="button_chooseTutor">Choose Your Tutor</string>
     <string name="Text_chooseCourse">Which Course would you like help in?</string>
+    <string name="alert_beginning_text">Please confirm the following details</string>
+    <string name="tutor_name">Tutor:</string>
+    <string name="course_name">Course:</string>
+    <string name="start_session">Session Starts:</string>
+    <string name="end_session">Session Ends:</string>
+    <string name="AM">AM</string>
+    <string name="PM">PM</string>
+    <string-array name="time_list">
+        <item>AM</item>
+        <item>PM</item>
+    </string-array>
     <string-array name="courses_list">
         <item> </item>
         <item>EECS</item>
@@ -13,15 +24,6 @@
         <item>PHYS</item>
         <item>CHEM</item>
         <item>ENG</item>
-    </string-array>
-    <string name="text_chooseDay">Please Choose A Day</string>
-    <string-array name="days_list">
-        <item>Monday</item>
-        <item>Tuesday</item>
-        <item>Wednesday</item>
-        <item>Thursday</item>
-        <item>Friday</item>
-        <item>Any day</item>
     </string-array>
     <string name="monday">MON</string>
     <string name="tuesday">TUE</string>

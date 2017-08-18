@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -35,32 +36,7 @@ public class TuesdayTab extends DaysTab {
         LinearLayout layout = (LinearLayout) view.findViewById(R.id.TuesdayTab);
         //get the list of tutors
         String day = "Tuesday";
-        String display = "";
-        Intent intent = getActivity().getIntent();
-        String course = intent.getStringExtra(ChooseCourseActivity.courseSelected);
-
-        TextView textView1 = new TextView(view.getContext());
-
-        if (AreTutorsAvailableThatDay(day)) {
-            List<Tutor> tutors = getTutors(day);
-            for (int i = 0; i < tutors.size(); i++) {
-                if(tutors.get(i).teachCourse(course)){
-                    List<String> times =  tutors.get(i).getTimes(day);
-                    for(int j = 0; j<times.size(); j++){
-                        display += tutors.get(i).name + ": " + times.get(j) + "\n";
-                    }
-
-                }
-                else{
-                    display = "Sorry, there are no tutors available for " + course + " on " + day;
-                }
-            }
-        } else {
-            display = "Sorry, there are no tutors available on " + day;
-        }
-
-        textView1.setText(display);
-        layout.addView(textView1);
+        setDisplay(day, view, layout);
         return view;
     }
 
