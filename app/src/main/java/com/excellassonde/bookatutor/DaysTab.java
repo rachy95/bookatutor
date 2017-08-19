@@ -45,7 +45,12 @@ public class DaysTab extends Fragment {
         public final List courses;
         public final Map<String, List> availability;
 
-
+        /***
+         * create a tutor with a name, a list of courses they teach and their availabilities
+         * @param aName the full name of a tutor
+         * @param listCourses A list of courses the tutor is willing to teach
+         * @param avails the times and days a tutor is available
+         */
         private Tutor(String aName, List listCourses, Map avails){
             this.name = aName;
             this.courses = listCourses;
@@ -53,12 +58,34 @@ public class DaysTab extends Fragment {
 
         }
 
+        /***
+         *
+         * @return a set of days this tutor is available
+         */
         public Set<String> getDaysAvailable(){
             return availability.keySet();
         }
+
+        /***
+         *
+         * @param day the day this tutor might be available
+         * @return the times, given a particular day a tutor teaches, if the tutor is not available on the given day,
+         * an empty list is returned
+         */
         public List<String> getTimes(String day){
-            return availability.get(day);
+            if(getDaysAvailable().contains(day)) {
+                return availability.get(day);
+            }
+            else{
+                return new ArrayList<String>();
+            }
         }
+
+        /***
+         *
+         * @param course the course a tutor might teach
+         * @return if this tutor teaches a particular course called 'course'
+         */
         public boolean teachCourse(String course){
             return courses.contains(course);
         }
@@ -108,7 +135,7 @@ public class DaysTab extends Fragment {
         return tutors;
     }
 
-    //parse the contents of a tutor.
+    //private method to parse the contents in a tutor tag, then calls the respective methods to parse the nested tags
     private Tutor readTutor(XmlPullParser parser) throws XmlPullParserException, IOException{
         parser.require(XmlPullParser.START_TAG, ns, "Tutor");
         String name = null;
@@ -133,7 +160,7 @@ public class DaysTab extends Fragment {
         return new Tutor(name, courses, availability);
     }
 
-    //process the names of tutors
+    //private method to parse the names of tutors
     private  String readName(XmlPullParser parser) throws IOException, XmlPullParserException{
         parser.require(XmlPullParser.START_TAG, ns, "Name");
         String name = readText(parser);
@@ -141,7 +168,7 @@ public class DaysTab extends Fragment {
         return name;
     }
 
-    //process the courses the tutor can teach
+    //private method that returns a list a tutor can teach
     private  List readCourse(XmlPullParser parser) throws IOException, XmlPullParserException{
         parser.require(XmlPullParser.START_TAG, ns, "Course");
         String course = readText(parser);
@@ -151,7 +178,8 @@ public class DaysTab extends Fragment {
         return courses;
     }
 
-    //process the availability of the tutor
+    //process the availability of the tutor, it returns the day as a key
+    //and the times are the values mapped to that day
     private  Map<String, List> readAvailability(XmlPullParser parser) throws IOException, XmlPullParserException{
         Map<String, List> avails = new HashMap<>();
         String day = null;
@@ -214,8 +242,8 @@ public class DaysTab extends Fragment {
 
     /***
      *
-     * @param day - the day when a tutor might be free
-     * @return if there are tutors available on particular day
+     * @param day - the day a tutor is wanted
+     * @return if there are tutors available on a particular day
      */
     protected boolean AreTutorsAvailableThatDay(String day){
         List<Tutor> tutorsList = getTutorsList();
@@ -234,26 +262,9 @@ public class DaysTab extends Fragment {
 
     /***
      *
-     * @param day the day you want to get information
-     * @return the list of tutors that are available that day
-     */
-    protected  List<Tutor> getTutors(String day) {
-        List<Tutor> tutorsList = getTutorsList();
-        List<Tutor> result = new ArrayList<>();
-        for (int i = 0; i < tutorsList.size(); i++) {
-            Set<String> daysAvailable = tutorsList.get(i).getDaysAvailable();
-            if(daysAvailable.contains(day)){
-                result.add(tutorsList.get(i));
-            }
-        }
-        return result;
-    }
-
-    /***
-     *
-     * @param day the day you want to get information
-     * @param course the course a tutor teaches
-     * @return the list of tutors that are available that day and that teach that course
+     * @param day a day tutoring is wanted
+     * @param course a course being offered
+     * @return the list of tutors that are available for day `day' and that teach course `course'
      */
     protected  List<Tutor> getTutors(String day, String course) {
         List<Tutor> tutorsList = getTutorsList();
@@ -268,6 +279,7 @@ public class DaysTab extends Fragment {
         return result;
     }
 
+    //set the page view for the different tabs. This method is called by MonTab to FriTab
     protected void setDisplay(String day, View view, LinearLayout layout){
         //get the course chosen from the choose course activity
         Intent intent = getActivity().getIntent();
@@ -276,28 +288,42 @@ public class DaysTab extends Fragment {
         String display = "";
 
         //text to display a string if no tutor is available
-        TextView textView1 = new TextView(view.getContext());
+        TextView displayTextView = new TextView(view.getContext());
 
         //if there are tutors available, we want to be able to click on the tutors
         List<Button> displayTutors = new ArrayList<>();
 
-        //if tutors are not even available on that day then dont check the list. Just display we do not have tutors on that day
+        //if tutors are not even available on that day then don't check the list.
+        //Just display we do not have tutors on that day
         if (AreTutorsAvailableThatDay(day)) {
             final List<Tutor> tutors = getTutors(day, courseSelected);
             if(tutors.isEmpty()){
+                //there are tutors available on that day, but none that teach the course selected
                 display = "Sorry, there are no tutors available for " + courseSelected + " on " + day;
-                textView1.setText(display);
-                layout.addView(textView1);
+                //set the text view, then add to layout
+                displayTextView.setTextSize(20);
+                displayTextView.setText(display);
+                layout.addView(displayTextView);
             }
             else{
+                //this means this tutor is available and teach this course
                 for (int i = 0; i < tutors.size(); i++) {
+                    //get the times for that tutor
                     final List<String> times =  tutors.get(i).getTimes(day);
                     for(int j = 0; j < times.size(); j++){
                         display = tutors.get(i).name + ": " + times.get(j);
+                        //add the tutor and times to a button
                         Button button = new Button(view.getContext());
                         button.setText(display);
-               //         button.setBackground(getResources().getDrawable(R.drawable.rectangle, Resources.Theme));
-               //         button.layout(10,10, 10, 10);
+                        //set the color and the way it looks
+                        button.setTextColor(getResources().getColor(R.color.colorPrimary));
+                        button.setBackgroundResource(R.drawable.rectangle);
+                        //set space between the buttons
+                        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                        params.setMargins(0, 20, 0, 0);
+                        button.setLayoutParams(params);
+                        //integers needed for getting objects in a loop
                         final int finalI = i;
                         final int finalJ = j;
                         button.setOnClickListener(new View.OnClickListener() {
@@ -325,25 +351,17 @@ public class DaysTab extends Fragment {
 
         } else {
             display = "Sorry, there are no tutors available on " + day;
-            textView1.setText(display);
-            layout.addView(textView1);
+            displayTextView.setText(display);
+            displayTextView.setTextSize(20);
+            layout.addView(displayTextView);
         }
-
+        //get the buttons and add them to the layout
         for(int i = 0; i< displayTutors.size(); i++){
             layout.addView(displayTutors.get(i));
         }
     }
 
-    private String getStartTime(String time){
-        List<String> times = Arrays.asList(time.split("-"));
-        return times.get(0);
-    }
-
-    private String getEndTime(String time){
-        List<String> times = Arrays.asList(time.split("-"));
-        return times.get(1);
-    }
-
+    //private method to set the view of the alert that pops when a button is clicked
     private View setAlertView(String tutorName, String time){
         LayoutInflater factory = LayoutInflater.from(getContext());
         final View alertView = factory.inflate(R.layout.alert_view, null);
@@ -353,11 +371,11 @@ public class DaysTab extends Fragment {
         tutor.setEnabled(false);
         //set the course
         EditText course = (EditText) alertView.findViewById(R.id.course_name_edit);
-        course.setText(courseSelected.toLowerCase());
+        course.setText(courseSelected);
         course.setEnabled(false);
         //set the start and end times
         //get the times first
-        List times = setTime(time, alertView);
+        List times = getTime(time, alertView);
         String startTime = times.get(0).toString();
         String endTime = times.get(1).toString();
         EditText start = (EditText) alertView.findViewById(R.id.start_session_edit);
@@ -368,7 +386,9 @@ public class DaysTab extends Fragment {
         return alertView;
     }
 
-    private List<Integer> setTime(String time, View view) {
+    //get the time a tutor is free broken down, and return the start time and end time in a list.
+    //A list can only contain two items
+    private List<Integer> getTime(String time, View view) {
         //set the spinners value
         Spinner startSpinner = (Spinner) view.findViewById(R.id.start_session_dropdown_time);
         Spinner endSpinner = (Spinner) view.findViewById(R.id.end_session_dropdown_time);
@@ -387,7 +407,7 @@ public class DaysTab extends Fragment {
             endSpinner.setEnabled(false);
         }
         else if (start.equals("am") && end.equals("pm")) {
-            startSpinner.setSelection(1);
+            startSpinner.setSelection(0);
             endSpinner.setSelection(1);
         }
         else {
