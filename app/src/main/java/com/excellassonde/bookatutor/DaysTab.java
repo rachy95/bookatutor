@@ -296,8 +296,8 @@ public class DaysTab extends Fragment {
                         display = tutors.get(i).name + ": " + times.get(j);
                         Button button = new Button(view.getContext());
                         button.setText(display);
-                        button.setBackgroundResource(R.color.colorPrimary);
-                        button.layout(10,10, 10, 10);
+               //         button.setBackground(getResources().getDrawable(R.drawable.rectangle, Resources.Theme));
+               //         button.layout(10,10, 10, 10);
                         final int finalI = i;
                         final int finalJ = j;
                         button.setOnClickListener(new View.OnClickListener() {
@@ -379,22 +379,26 @@ public class DaysTab extends Fragment {
         //get the end of the time, if it is AM or PM
         String start = startTime.substring(startTime.length() - 2, startTime.length());
         String end = endTime.substring(endTime.length() - 2, endTime.length());
+        //0 is AM and 1 is PM
         if (start.equals("am") && end.equals("am")) {
-            startSpinner.setSelection(1);
+            startSpinner.setSelection(0);
             startSpinner.setEnabled(false);
-            endSpinner.setSelection(1);
+            endSpinner.setSelection(0);
             endSpinner.setEnabled(false);
-        } else if (start.equals("am") && end.equals("pm")) {
+        }
+        else if (start.equals("am") && end.equals("pm")) {
             startSpinner.setSelection(1);
             endSpinner.setSelection(1);
-        } else {
-            startSpinner.setSelection(2);
+        }
+        else {
+            startSpinner.setSelection(1);
             startSpinner.setEnabled(false);
-            endSpinner.setSelection(2);
+            endSpinner.setSelection(1);
             endSpinner.setEnabled(false);
         }
         //return only the numbers from the time
         List<Integer> timeIntegers = new ArrayList();
+        //replace all letters with spaces so you can get only integers
         timeIntegers.add(Integer.parseInt(startTime.replaceAll("[\\D]", "")));
         timeIntegers.add(Integer.parseInt(endTime.replaceAll("[\\D]", "")));
         return timeIntegers;
