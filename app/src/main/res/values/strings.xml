@@ -11,14 +11,11 @@
     <string name="course_name">Course:</string>
     <string name="start_session">Session Starts:</string>
     <string name="end_session">Session Ends:</string>
-    <string name="AM">AM</string>
-    <string name="PM">PM</string>
     <string-array name="time_list">
         <item>AM</item>
         <item>PM</item>
     </string-array>
     <string-array name="courses_list">
-        <item> </item>
         <item>EECS</item>
         <item>MATH</item>
         <item>PHYS</item>

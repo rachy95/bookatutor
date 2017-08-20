@@ -24,6 +24,7 @@
                 android:value=".LoginActivity" />
         </activity>
         <activity android:name=".ChooseDayAndTutor" />
+        <activity android:name=".ConfirmationPage"></activity>
     </application>
 
 </manifest>

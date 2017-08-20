@@ -39,6 +39,9 @@ public class DaysTab extends Fragment {
     //course chosen by the user
     private String courseSelected = "";
 
+    //keeps the name of the tutor the user picks
+    public static String tutorName;
+
     //Define the tutor class
     public static class Tutor {
         public final String name;
@@ -311,7 +314,8 @@ public class DaysTab extends Fragment {
                     //get the times for that tutor
                     final List<String> times =  tutors.get(i).getTimes(day);
                     for(int j = 0; j < times.size(); j++){
-                        display = tutors.get(i).name + ": " + times.get(j);
+                        final String name = tutors.get(i).name;
+                        display = name + ": " + times.get(j);
                         //add the tutor and times to a button
                         Button button = new Button(view.getContext());
                         button.setText(display);
@@ -321,8 +325,9 @@ public class DaysTab extends Fragment {
                         //set space between the buttons
                         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                                 LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                        params.setMargins(0, 20, 0, 0);
+                        params.setMargins(60, 20, 60, 0);
                         button.setLayoutParams(params);
+                        button.setPadding(20,20,20,20);
                         //integers needed for getting objects in a loop
                         final int finalI = i;
                         final int finalJ = j;
@@ -331,12 +336,15 @@ public class DaysTab extends Fragment {
                                                           AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                                                           builder.setView(setAlertView(tutors.get(finalI).name, times.get(finalJ)))
                                                                   .setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
-                                                                      public void onClick(DialogInterface dialog, int id) {
-                                                                          dialog.cancel();
+                                                                      public void onClick(DialogInterface dialog, int buttonID) {
+                                                                          Intent intent=new Intent(getActivity(), ConfirmationPage.class);
+                                                                          //send the name to confirmation page
+                                                                          ConfirmationPage.setTutorName(name);
+                                                                          getContext().startActivity(intent);
                                                                       }
                                                                   })
                                                                   .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                                                                      public void onClick(DialogInterface dialog, int id) {
+                                                                      public void onClick(DialogInterface dialog, int buttonID) {
                                                                           dialog.cancel();
                                                                       }
                                                                   });
@@ -353,6 +361,7 @@ public class DaysTab extends Fragment {
             display = "Sorry, there are no tutors available on " + day;
             displayTextView.setText(display);
             displayTextView.setTextSize(20);
+            displayTextView.setPadding(30, 0, 0, 0);
             layout.addView(displayTextView);
         }
         //get the buttons and add them to the layout
