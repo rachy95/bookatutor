@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 public class ConfirmationPage extends AppCompatActivity {
-    String confirmMessage = "Thanks. Your request has been received. A confirmation email will be sent once %s confirms this session";
+    String confirmMessage = "Your request has been received! A confirmation email will be sent once %s confirms this session";
     public static String tutorName;
     String totalConfirmMessage;
     @Override

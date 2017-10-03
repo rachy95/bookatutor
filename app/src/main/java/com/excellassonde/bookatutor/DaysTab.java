@@ -3,32 +3,32 @@ package com.excellassonde.bookatutor;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.content.res.XmlResourceParser;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.Space;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
-import java.net.Inet4Address;
+import java.text.SimpleDateFormat;
+import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
@@ -38,15 +38,14 @@ public class DaysTab extends Fragment {
 
     //course chosen by the user
     private String courseSelected = "";
-
-    //keeps the name of the tutor the user picks
-    public static String tutorName;
+    private static String studentName = "";
+    private static String studentEmail = "";
 
     //Define the tutor class
     public static class Tutor {
         public final String name;
         public final List courses;
-        public final Map<String, List> availability;
+        public final Map<String, List<Map.Entry<String, Boolean>>> availability;
 
         /***
          * create a tutor with a name, a list of courses they teach and their availabilities
@@ -75,12 +74,13 @@ public class DaysTab extends Fragment {
          * @return the times, given a particular day a tutor teaches, if the tutor is not available on the given day,
          * an empty list is returned
          */
-        public List<String> getTimes(String day){
+        public List<Map.Entry<String, Boolean>> getTimes(String day){
+
             if(getDaysAvailable().contains(day)) {
                 return availability.get(day);
             }
             else{
-                return new ArrayList<String>();
+                return new ArrayList<>();
             }
         }
 
@@ -143,7 +143,7 @@ public class DaysTab extends Fragment {
         parser.require(XmlPullParser.START_TAG, ns, "Tutor");
         String name = null;
         List courses = null;
-        Map availability = null;
+        Map<String, List<Map.Entry<String, Boolean>>> availability = null;
 
         while (parser.next() != XmlPullParser.END_TAG){
             if(parser.getEventType() != XmlPullParser.START_TAG){
@@ -183,10 +183,8 @@ public class DaysTab extends Fragment {
 
     //process the availability of the tutor, it returns the day as a key
     //and the times are the values mapped to that day
-    private  Map<String, List> readAvailability(XmlPullParser parser) throws IOException, XmlPullParserException{
-        Map<String, List> avails = new HashMap<>();
-        String day = null;
-        List times = null;
+    private  Map<String, List<Map.Entry<String, Boolean>>> readAvailability(XmlPullParser parser) throws IOException, XmlPullParserException{
+        Map<String, List<Map.Entry<String, Boolean>>> avails = new HashMap<>();
 
         parser.require(XmlPullParser.START_TAG, ns, "Availability");
 
@@ -196,41 +194,48 @@ public class DaysTab extends Fragment {
             }
             String tag = parser.getName();
             if(tag.equals("Day")){
-                day = readDay(parser);
+                String day = readDay(parser);
+                List<Map.Entry<String, Boolean>> times = new ArrayList<>();
                 while(parser.next() != XmlPullParser.END_TAG){
                     if(parser.getEventType() != XmlPullParser.START_TAG){
                         continue;
                     }
                     tag = parser.getName();
                     if(tag.equals("Time")){
-                        times = readTimes(parser);
+                        Map.Entry<String,Boolean> time = readTime(parser);
+                        times.add(time);
                     }
                 }
+                avails.put(day, times);
+                parser.require(XmlPullParser.END_TAG, ns, "Day");
             }
-            parser.require(XmlPullParser.END_TAG, ns, "Day");
-            avails.put(day, times);
         }
-
         parser.require(XmlPullParser.END_TAG, ns, "Availability");
         return avails;
     }
 
     //process the day the tutor is free
     private  String readDay(XmlPullParser parser) throws IOException, XmlPullParserException{
-        String day = "";
         parser.require(XmlPullParser.START_TAG, ns, "Day");
-        day = parser.getAttributeValue(0);
+        String day = parser.getAttributeValue(0);
         return day;
     }
 
     //process the times the tutor is free
-    private  List<String> readTimes(XmlPullParser parser) throws IOException, XmlPullParserException{
+    private Map.Entry<String, Boolean> readTime(XmlPullParser parser) throws IOException, XmlPullParserException{
         parser.require(XmlPullParser.START_TAG, ns, "Time");
+        String booked = parser.getAttributeValue(0);
         String time = readText(parser);
-        parser.require(XmlPullParser.END_TAG, ns, "Time");
+        boolean isBooked = false;
+        if(booked.equals("false")){
+            isBooked = false;
+        }
+        else if (booked.equals("true")){
+            isBooked = true;
+        }
 
-        List<String> times = Arrays.asList(time.split(", "));
-        return times;
+        parser.require(XmlPullParser.END_TAG, ns, "Time");
+        return new AbstractMap.SimpleEntry<>(time, isBooked);
     }
 
     // For the tags name, and courses, extracts their text values.
@@ -263,6 +268,10 @@ public class DaysTab extends Fragment {
         return res;
     }
 
+    //given the name of the tutor and the time the student chose, set the isBooked attribute of that time to be false
+    protected void setTutorIsBooked(String tutorName, String time){
+
+    }
     /***
      *
      * @param day a day tutoring is wanted
@@ -284,6 +293,11 @@ public class DaysTab extends Fragment {
 
     //set the page view for the different tabs. This method is called by MonTab to FriTab
     protected void setDisplay(String day, View view, LinearLayout layout){
+
+        //Our access to the database
+        final StudentInfoDatabaseHelper helper = new StudentInfoDatabaseHelper(getContext());
+        final  SessionInfoDatabaseHelper shelper = new SessionInfoDatabaseHelper(getContext());
+
         //get the course chosen from the choose course activity
         Intent intent = getActivity().getIntent();
         courseSelected = intent.getStringExtra(ChooseCourseActivity.courseSelected);
@@ -306,22 +320,32 @@ public class DaysTab extends Fragment {
                 //set the text view, then add to layout
                 displayTextView.setTextSize(20);
                 displayTextView.setText(display);
+                displayTextView.setTextColor(getResources().getColor(R.color.colorPrimary));
                 layout.addView(displayTextView);
             }
             else{
                 //this means this tutor is available and teach this course
                 for (int i = 0; i < tutors.size(); i++) {
                     //get the times for that tutor
-                    final List<String> times =  tutors.get(i).getTimes(day);
+                    final List<Map.Entry<String, Boolean>> times =  tutors.get(i).getTimes(day);
                     for(int j = 0; j < times.size(); j++){
                         final String name = tutors.get(i).name;
-                        display = name + ": " + times.get(j);
+                        display = name + ": " + times.get(j).getKey();
                         //add the tutor and times to a button
                         Button button = new Button(view.getContext());
                         button.setText(display);
                         //set the color and the way it looks
                         button.setTextColor(getResources().getColor(R.color.colorPrimary));
                         button.setBackgroundResource(R.drawable.rectangle);
+                        //if its that day, make every button disabled too
+                        //if the tutor has NOT been booked, then getValue is false
+                        //so if its false, make the button un-clickable
+                        //then make it greyed out if it is not avaialable
+                        if(times.get(j).getValue() || day.equals(getCurrentDay())) {
+                            button.setEnabled(false);
+                            button.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.MULTIPLY);
+                            button.setTextColor(Color.GRAY);
+                        }
                         //set space between the buttons
                         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                                 LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -334,13 +358,35 @@ public class DaysTab extends Fragment {
                         button.setOnClickListener(new View.OnClickListener() {
                                                       public void onClick(View v) {
                                                           AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                                                          builder.setView(setAlertView(tutors.get(finalI).name, times.get(finalJ)))
+                                                          builder.setView(setAlertView(tutors.get(finalI).name, times.get(finalJ).getKey()))
                                                                   .setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
                                                                       public void onClick(DialogInterface dialog, int buttonID) {
                                                                           Intent intent=new Intent(getActivity(), ConfirmationPage.class);
+                                                                          //change the isBooked for that time to be true
+                                                                          setTutorIsBooked(name, times.get(finalJ).getKey());
                                                                           //send the name to confirmation page
                                                                           ConfirmationPage.setTutorName(name);
                                                                           getContext().startActivity(intent);
+                                                                          //store this session
+                                                                          SessionInformation session = new SessionInformation();
+                                                                          session.setTutorName(name);
+                                                                          session.setCourse(courseSelected);
+                                                                          session.setStartTime(times.get(finalJ).getKey());
+                                                                          session.setEndTime(times.get(finalJ).getKey());
+                                                                          Calendar calendar = Calendar.getInstance();
+                                                                          Date date = calendar.getTime();
+                                                                          session.setSessionDate(date);
+                                                                          session.setSessionType(SessionInformation.SessionType.GROUP);
+                                                                          session.addToStudentEmails(studentEmail);
+                                                                          shelper.insertSession(session);
+                                                                          //store the information in our database
+                                                                          StudentInformation studentInformation = new StudentInformation();
+                                                                          studentInformation.setStudentName(studentName);
+                                                                          studentInformation.setStudentEmail(studentEmail);
+                                                                          studentInformation.addToSessions(session.getId());
+                                                                          //the session has to be set too
+                                                                          helper.insertStudent(studentInformation);
+
                                                                       }
                                                                   })
                                                                   .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -362,6 +408,7 @@ public class DaysTab extends Fragment {
             displayTextView.setText(display);
             displayTextView.setTextSize(20);
             displayTextView.setPadding(30, 0, 0, 0);
+            displayTextView.setTextColor(getResources().getColor(R.color.colorPrimary));
             layout.addView(displayTextView);
         }
         //get the buttons and add them to the layout
@@ -382,9 +429,9 @@ public class DaysTab extends Fragment {
         EditText course = (EditText) alertView.findViewById(R.id.course_name_edit);
         course.setText(courseSelected);
         course.setEnabled(false);
-        //set the start and end times
         //get the times first
         List times = getTime(time, alertView);
+        //set the start and end times
         String startTime = times.get(0).toString();
         String endTime = times.get(1).toString();
         EditText start = (EditText) alertView.findViewById(R.id.start_session_edit);
@@ -431,5 +478,23 @@ public class DaysTab extends Fragment {
         timeIntegers.add(Integer.parseInt(startTime.replaceAll("[\\D]", "")));
         timeIntegers.add(Integer.parseInt(endTime.replaceAll("[\\D]", "")));
         return timeIntegers;
+    }
+
+    //get the current day, if the student is checking on that day, then make it disabled
+    private String getCurrentDay(){
+        SimpleDateFormat dayFormat = new SimpleDateFormat("EEEE", Locale.US);
+        Calendar calendar = Calendar.getInstance();
+        Date date = calendar.getTime();
+        return dayFormat.format(date);
+    }
+
+    //set the name of the student
+    public static void setStudentName(String name){
+        studentName = name;
+    }
+
+    //set the email of the student
+    public static void setStudentEmail(String email){
+        studentEmail = email;
     }
 }

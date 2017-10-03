@@ -6,7 +6,12 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:spinnerDropDownItemStyle">@style/courses_dropdown</item>
+        <item name="android:spinnerItemStyle">@style/courses_dropdown</item>
     </style>
 
-
+    <style name="courses_dropdown" parent="TextAppearance.AppCompat.Subhead">
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:paddingLeft">@string/padding</item>
+    </style>
 </resources>

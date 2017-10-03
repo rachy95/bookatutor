@@ -4,11 +4,13 @@
     <Name>John Doe</Name>
     <Course>MATH, EECS</Course>
     <Availability>
-        <Day day="Monday">
-            <Time>9pm-10pm, 3pm-5pm</Time>
+        <Day day="Monday" >
+            <Time isbooked="true">9pm-10pm</Time>
+            <Time isbooked="false">3pm-5pm</Time>
         </Day>
         <Day day="Tuesday">
-            <Time>9pm-10pm, 3pm-5pm</Time>
+            <Time isbooked="false">9pm-10pm</Time>
+            <Time isbooked="false">3pm-5pm</Time>
         </Day>
     </Availability>
   </Tutor>
@@ -17,10 +19,12 @@
     <Course>PHYS, CHEM, MATH</Course>
     <Availability>
         <Day day="Wednesday">
-            <Time>8am-4pm</Time>
+            <Time isbooked="false">8am-4pm</Time>
         </Day>
         <Day day="Friday">
-            <Time>9am-10am, 2pm-5pm, 9pm-11pm </Time>
+            <Time isbooked="false">9am-10am</Time>
+            <Time isbooked="false">2pm-5pm</Time>
+            <Time isbooked="false">9pm-11pm</Time>
         </Day>
     </Availability>
   </Tutor>
