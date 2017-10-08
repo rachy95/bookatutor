@@ -5,24 +5,21 @@
     <string name="button_bookSession">Book A Session</string>
     <string name="button_leaveReview">Leave A Review</string>
     <string name="button_chooseTutor">Choose Your Tutor</string>
-    <string name="button_next">Next</string>
     <string name="Text_chooseCourse">Which Course would you like help in?</string>
     <string name="alert_beginning_text">Please confirm the following details</string>
     <string name="tutor_name">Tutor:</string>
     <string name="course_name">Course:</string>
     <string name="start_session">Starts:</string>
     <string name="end_session">Ends:</string>
-    <string name="session_type">Session Type:</string>
+    <string name="session_type">Type:</string>
     <string name="topic">Topic(s):</string>
-    <string name="topic_helper_text">topics you need help in</string>
-    <string name="group_message">Please enter the email(s) of other students joining the session, separated by a comma:</string>
+    <string name="topic_helper_text">Please add here the topics you need help with</string>
+    <string name="button_next">Next</string>
+    <string name="button_back">Back</string>
+    <string name="padding">10dp</string>
     <string-array name="time_list">
         <item>AM</item>
         <item>PM</item>
-    </string-array>
-    <string-array name="session_type_dropdown">
-        <item>One-On-One</item>
-        <item>Group</item>
     </string-array>
     <string-array name="courses_list">
         <item>EECS</item>
@@ -31,10 +28,13 @@
         <item>CHEM</item>
         <item>ENG</item>
     </string-array>
+    <string-array name="session_type_dropdown">
+        <item>One-on-One</item>
+        <item>Group</item>
+    </string-array>
     <string name="monday">MON</string>
     <string name="tuesday">TUE</string>
     <string name="wednesday">WED</string>
     <string name="thursday">THU</string>
     <string name="friday">FRI</string>
-    <string name="padding">10dp</string>
 </resources>

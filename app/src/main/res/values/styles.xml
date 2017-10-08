@@ -6,12 +6,21 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:spinnerDropDownItemStyle">@style/courses_dropdown</item>
-        <item name="android:spinnerItemStyle">@style/courses_dropdown</item>
+        <item name="android:spinnerItemStyle">@style/Widget.AppCompat.Spinner.DropDown</item>
+        <item name="android:spinnerDropDownItemStyle">@style/Widget.AppCompat.Spinner.DropDown.ActionBar</item>
     </style>
 
-    <style name="courses_dropdown" parent="TextAppearance.AppCompat.Subhead">
+    <style name="Widget.AppCompat.Spinner.DropDown" parent="Widget.AppCompat.Spinner.DropDown">
         <item name="android:textColor">@color/colorPrimary</item>
-        <item name="android:paddingLeft">@string/padding</item>
+        <item name="android:textSize">15dp</item>
+        <item name="android:background">@drawable/rectangle</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+    </style>
+
+    <style name="Widget.AppCompat.Spinner.DropDown.ActionBar">
+        <item name="android:textColor">@color/colorPrimary</item>
     </style>
 </resources>

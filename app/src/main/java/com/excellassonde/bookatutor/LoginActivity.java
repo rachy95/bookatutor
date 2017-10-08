@@ -26,14 +26,14 @@ public class LoginActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ChooseCourseActivity.class);
         studentName = studentNameTextBox.getEditableText().toString();
         studentEmail = studentEmailTextBox.getEditableText().toString();
-        if(!isValidEmail(studentEmail)){
-            Toast.makeText(this, "Please enter a valid email", Toast.LENGTH_LONG).show();
-        }
-        else {
-            DaysTab.setStudentName(studentName);
-            DaysTab.setStudentEmail(studentEmail);
+//        if(!isValidEmail(studentEmail)){
+//            Toast.makeText(this, "Please enter a valid email", Toast.LENGTH_LONG).show();
+//        }
+//        else {
+//            DaysTab.setStudentName(studentName);
+//            DaysTab.setStudentEmail(studentEmail);
             startActivity(intent);
-        }
+//        }
     }
 
     public final static boolean isValidEmail(CharSequence target) {

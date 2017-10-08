@@ -2,13 +2,15 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    tools:context="com.excellassonde.bookatutor.SessionReview">
+
+
 
     <TextView
-    android:id="@+id/alert_beginning_text"
-    android:layout_width="wrap_content"
+        android:id="@+id/alert_beginning_text"
+        android:layout_width="wrap_content"
         android:layout_height="22dp"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="16dp"
@@ -21,7 +23,8 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.034" />
+        app:layout_constraintVertical_bias="0.055"
+        app:layout_constraintHorizontal_bias="0.355" />
 
     <TextView
         android:id="@+id/tutor_name"
@@ -57,11 +60,11 @@
         android:textAlignment="center"
         android:textColor="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.035"
+        app:layout_constraintHorizontal_bias="0.031"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tutor_name"
-        app:layout_constraintVertical_bias="0.097"
+        app:layout_constraintVertical_bias="0.073"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp" />
 
@@ -99,11 +102,11 @@
         android:textAlignment="center"
         android:textColor="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.035"
+        app:layout_constraintHorizontal_bias="0.031"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/session_type"
-        app:layout_constraintVertical_bias="0.137"
+        app:layout_constraintVertical_bias="0.104"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp" />
 
@@ -122,11 +125,11 @@
         android:textAlignment="center"
         android:textColor="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintHorizontal_bias="0.444"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/start_session_edit"
         app:layout_constraintTop_toBottomOf="@+id/topic"
-        app:layout_constraintVertical_bias="0.557" />
+        app:layout_constraintVertical_bias="0.283" />
 
 
     <TextView
@@ -142,11 +145,11 @@
         android:textAlignment="center"
         android:textColor="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintHorizontal_bias="0.444"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/end_session_edit"
         app:layout_constraintTop_toBottomOf="@+id/start_session"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintVertical_bias="0.191"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp" />
 
@@ -162,8 +165,8 @@
         android:layout_marginTop="8dp"
         android:background="@drawable/rectangle"
         android:ems="10"
-        android:paddingLeft="10dp"
         android:inputType="none"
+        android:paddingLeft="10dp"
         android:textColor="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -196,8 +199,8 @@
 
     <EditText
         android:id="@+id/topic_edit"
-        android:layout_width="162dp"
-        android:layout_height="87dp"
+        android:layout_width="170dp"
+        android:layout_height="74dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="40dp"
         android:layout_marginLeft="18dp"
@@ -205,13 +208,9 @@
         android:layout_marginStart="18dp"
         android:layout_marginTop="30dp"
         android:background="@drawable/rectangle"
-        android:ems="10"
         android:hint="@string/topic_helper_text"
         android:inputType="textMultiLine"
         android:paddingLeft="10dp"
-        android:paddingStart="10dp"
-        android:scrollHorizontally="false"
-        android:maxLines="1"
         android:selectAllOnFocus="true"
         android:textColor="@color/colorPrimary"
         android:textColorHint="@color/colorPrimary"
@@ -226,77 +225,76 @@
     <EditText
         android:id="@+id/start_session_edit"
         android:layout_width="85dp"
-        android:layout_height="28dp"
+        android:layout_height="29dp"
         android:layout_marginBottom="8dp"
+        android:layout_marginEnd="40dp"
         android:layout_marginLeft="18dp"
         android:layout_marginRight="40dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/rectangle"
         android:ems="10"
-        android:paddingLeft="10dp"
         android:inputType="number"
+        android:paddingLeft="10dp"
         android:textColor="@color/colorPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toRightOf="@+id/tutor_name"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/topic_edit"
-        app:layout_constraintVertical_bias="0.0"
-        android:layout_marginStart="18dp"
-        android:layout_marginEnd="40dp" />
+        app:layout_constraintVertical_bias="0.126" />
 
     <EditText
         android:id="@+id/end_session_edit"
-        android:layout_width="87dp"
+        android:layout_width="85dp"
         android:layout_height="29dp"
         android:layout_marginBottom="8dp"
+        android:layout_marginEnd="40dp"
         android:layout_marginLeft="18dp"
         android:layout_marginRight="40dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/rectangle"
         android:ems="10"
-        android:paddingLeft="10dp"
         android:inputType="number"
+        android:paddingLeft="10dp"
         android:textColor="@color/colorPrimary"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toRightOf="@+id/tutor_name"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/start_session_edit"
-        app:layout_constraintVertical_bias="0.0"
-        android:layout_marginStart="18dp"
-        android:layout_marginEnd="40dp" />
+        app:layout_constraintVertical_bias="0.191" />
 
     <Spinner
         android:id="@+id/session_type_dropdown"
         android:layout_width="170dp"
         android:layout_height="29dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/rectangle"
+        android:layout_marginBottom="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginTop="0dp"
+        android:background="@drawable/spinner_background"
         android:entries="@array/session_type_dropdown"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.151"
+        app:layout_constraintHorizontal_bias="0.31"
         app:layout_constraintLeft_toRightOf="@+id/session_type"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/course_name_edit"
-        app:layout_constraintVertical_bias="0.076" />
+        app:layout_constraintVertical_bias="0.117" />
 
     <Spinner
         android:id="@+id/start_session_dropdown_time"
         android:layout_width="68dp"
         android:layout_height="29dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="0dp"
         android:layout_marginLeft="0dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/rectangle"
+        android:layout_marginRight="0dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="29dp"
+        android:background="@drawable/spinner_background"
         android:entries="@array/time_list"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.298"
         app:layout_constraintLeft_toRightOf="@+id/start_session_edit"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/topic_edit" />
@@ -305,17 +303,43 @@
         android:id="@+id/end_session_dropdown_time"
         android:layout_width="68dp"
         android:layout_height="29dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/rectangle"
+        android:layout_marginBottom="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginTop="0dp"
+        android:background="@drawable/spinner_background"
         android:entries="@array/time_list"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.179"
+        app:layout_constraintHorizontal_bias="0.298"
         app:layout_constraintLeft_toRightOf="@+id/end_session_edit"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/start_session_dropdown_time"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.233" />
+
+    <Button
+        android:id="@+id/btn_next"
+        android:layout_width="130dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="56dp"
+        android:text="@string/button_next"
+        android:background="@color/colorPrimary"
+        android:textColor="@android:color/white"
+        app:layout_constraintTop_toBottomOf="@id/end_session_edit"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.93" />
+
+    <Button
+        android:id="@+id/button_back"
+        android:layout_width="130dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="56dp"
+        android:background="@color/colorPrimary"
+        android:text="@string/button_back"
+        android:textColor="@android:color/white"
+        app:layout_constraintHorizontal_bias="0.069"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/end_session_edit" />
 
 </android.support.constraint.ConstraintLayout>

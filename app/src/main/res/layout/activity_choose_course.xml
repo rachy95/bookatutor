@@ -36,7 +36,7 @@
         android:layout_marginTop="40dp"
         android:entries="@array/courses_list"
         android:textAlignment="center"
-        android:background="@drawable/rectangle"
+        android:background="@drawable/spinner_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.516"
         app:layout_constraintLeft_toLeftOf="parent"
