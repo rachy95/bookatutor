@@ -7,6 +7,7 @@
     <string name="button_chooseTutor">Choose Your Tutor</string>
     <string name="Text_chooseCourse">Which Course would you like help in?</string>
     <string name="alert_beginning_text">Please confirm the following details</string>
+    <string name="group_session_email">Please put here the remaining emails of students joining the session</string>
     <string name="tutor_name">Tutor:</string>
     <string name="course_name">Course:</string>
     <string name="start_session">Starts:</string>
@@ -14,7 +15,7 @@
     <string name="session_type">Type:</string>
     <string name="topic">Topic(s):</string>
     <string name="topic_helper_text">Please add here the topics you need help with</string>
-    <string name="button_next">Next</string>
+    <string name="button_send_request">Send Request</string>
     <string name="button_back">Back</string>
     <string name="padding">10dp</string>
     <string-array name="time_list">
@@ -27,6 +28,39 @@
         <item>PHYS</item>
         <item>CHEM</item>
         <item>ENG</item>
+        <item>EECS</item>
+        <item>MATH</item>
+        <item>PHYS</item>
+        <item>CHEM</item>
+        <item>ENG</item>
+        <item>EECS</item>
+        <item>MATH</item>
+        <item>PHYS</item>
+        <item>CHEM</item>
+        <item>ENG</item>
+        <item>EECS</item>
+        <item>MATH</item>
+        <item>PHYS</item>
+        <item>CHEM</item>
+        <item>ENG</item>
+        <item>EECS</item>
+        <item>MATH</item>
+        <item>PHYS</item>
+        <item>CHEM</item>
+        <item>ENG</item>
+        <item>ENG</item>
+        <item>EECS</item>
+        <item>MATH</item>
+        <item>PHYS</item>
+        <item>CHEM</item>
+        <item>ENG</item>
+        <item>ENG</item>
+        <item>EECS</item>
+        <item>MATH</item>
+        <item>PHYS</item>
+        <item>CHEM</item>
+        <item>ENG</item>
+
     </string-array>
     <string-array name="session_type_dropdown">
         <item>One-on-One</item>

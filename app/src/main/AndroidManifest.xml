@@ -17,15 +17,22 @@
             </intent-filter>
         </activity>
         <activity
+            android:screenOrientation="portrait"
             android:name=".ChooseCourseActivity"
             android:parentActivityName=".LoginActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".LoginActivity" />
         </activity>
-        <activity android:name=".ChooseDayAndTutor" />
-        <activity android:name=".ConfirmationPage" />
-        <activity android:name=".SessionReview"></activity>
+        <activity
+             android:screenOrientation="portrait"
+             android:name=".ChooseDayAndTutor" />
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".ConfirmationPage" />
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".SessionReview"></activity>
     </application>
 
 </manifest>

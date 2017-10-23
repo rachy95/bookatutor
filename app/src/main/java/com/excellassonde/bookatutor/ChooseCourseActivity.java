@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.view.ViewPropertyAnimatorCompatSet;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -20,6 +21,9 @@ public class ChooseCourseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_course);
+        spinner = (Spinner) findViewById(R.id.courses_dropdown);
+        ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.courses_list, R.layout.spinner_background);
+        spinner.setAdapter(adapter);
 
     }
 
