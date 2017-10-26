@@ -5,9 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.excellassonde.bookatutor.LoginActivity"
-    android:background="@android:color/white">
+    android:background="@android:color/white" >
 
-    <AutoCompleteTextView
+
+<AutoCompleteTextView
         android:id="@+id/firstName"
         android:layout_width="279dp"
         android:layout_height="49dp"

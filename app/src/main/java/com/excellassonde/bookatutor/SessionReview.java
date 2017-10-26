@@ -19,10 +19,8 @@ import java.util.List;
 
 public class SessionReview extends AppCompatActivity {
     Spinner spinner;
-    public static String sessionTypeSelected;
-    String sessionType;
-    public static String studentEmail, studentName;
-    public static String tutorName, sessionTime, course, other_emails;
+    public static String sessionType, studentEmail, studentName;
+    public static String tutorName, sessionTime, startTime, endTime, course, otherEmails;
 
     public static void setTime(String time) {
         sessionTime = time;
@@ -35,6 +33,8 @@ public class SessionReview extends AppCompatActivity {
     public static void setCourse(String aCourse) {
         course = aCourse;
     }
+
+    public static void setOtherEmails(String emails){ otherEmails = emails;}
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,50 +54,18 @@ public class SessionReview extends AppCompatActivity {
         //set the start and end times
         //get the times first
         List times = getTime(sessionTime);
-        String startTime = times.get(0).toString();
-        String endTime = times.get(1).toString();
+        startTime = times.get(0).toString();
+        endTime = times.get(1).toString();
         EditText start = (EditText) findViewById(R.id.start_session_edit);
         start.setText(startTime, TextView.BufferType.EDITABLE);
         EditText end = (EditText) findViewById(R.id.end_session_edit);
         end.setText(endTime, TextView.BufferType.EDITABLE);
-
-        //Our access to the database
-//        final StudentInfoDatabaseHelper helper = new StudentInfoDatabaseHelper(this);
-//        final  SessionInfoDatabaseHelper shelper = new SessionInfoDatabaseHelper(this);
-
-//        //store this session
-//        SessionInformation session = new SessionInformation();
-//        session.setTutorName(tutorName);
-//        session.setCourse(course);
-//        session.setStartTime(startTime);
-//        session.setEndTime(endTime);
-//        Calendar calendar = Calendar.getInstance();
-//        Date date = calendar.getTime();
-//        session.setSessionDate(date);
-//        if(sessionType.equals("Group")){
-//            session.setSessionType(SessionInformation.SessionType.GROUP);
-//            session.addToStudentEmails(studentEmail);
-//            session.addToStudentEmails(other_emails);
-//        }
-//        else{
-//            session.setSessionType(SessionInformation.SessionType.ONE_ON_ONE);
-//            session.addToStudentEmails(studentEmail);
-//        }
-//        shelper.insertSession(session);
-//        //store the information in our database
-//        StudentInformation studentInformation = new StudentInformation();
-//        studentInformation.setStudentName(studentName);
-//        studentInformation.setStudentEmail(studentEmail);
-//        studentInformation.addToSessions(session.getId());
-//        //the session has to be set too
-//        helper.insertStudent(studentInformation);
     }
 
     public void goToConfirmation(View view) {
         spinner = (Spinner) findViewById(R.id.session_type_dropdown);
         final Intent intent = new Intent(this, ConfirmationPage.class);
         sessionType = String.valueOf(spinner.getSelectedItem());
-
 
         if(sessionType.equals("Group")){
             //if session is a group, then tell the student to add the remaining emails
@@ -109,10 +77,9 @@ public class SessionReview extends AppCompatActivity {
             builder.setView(groupSessionEmailView)
                     .setPositiveButton("Next", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
-                            EditText emailBox = (EditText) findViewById(R.id.other_emails);
+                            EditText emailBox = (EditText) groupSessionEmailView.findViewById(R.id.other_emails);
                             String emails = emailBox.getText().toString();
-                            intent.putExtra(other_emails, emails);
-                            intent.putExtra(sessionTypeSelected, sessionType);
+                            setOtherEmails(emails);
                             startActivity(intent);                        }
                     })
                     .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -124,10 +91,8 @@ public class SessionReview extends AppCompatActivity {
             alert.show();
         }
         else{
-            intent.putExtra(sessionTypeSelected, sessionType);
             startActivity(intent);
         }
-
     }
 
     //get the time a tutor is free broken down, and return the start time and end time in a list.
@@ -167,5 +132,6 @@ public class SessionReview extends AppCompatActivity {
         timeIntegers.add(Integer.parseInt(endTime.replaceAll("[\\D]", "")));
         return timeIntegers;
     }
+
 
 }
