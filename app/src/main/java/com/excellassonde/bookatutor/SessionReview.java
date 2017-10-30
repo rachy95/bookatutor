@@ -13,8 +13,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 public class SessionReview extends AppCompatActivity {
@@ -35,6 +33,7 @@ public class SessionReview extends AppCompatActivity {
     }
 
     public static void setOtherEmails(String emails){ otherEmails = emails;}
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

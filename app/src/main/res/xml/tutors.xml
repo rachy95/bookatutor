@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Tutors>
   <Tutor>
-    <Name>John Doe</Name>
-    <Course>MATH, EECS</Course>
-    <Availability>
+      <Name>John Doe</Name>
+      <Course>MATH, EECS</Course>
+      <AvailableHours>5</AvailableHours>
+      <Availability>
         <Day day="Monday" >
             <Time isbooked="true">9pm-10pm</Time>
             <Time isbooked="false">3pm-5pm</Time>
@@ -12,12 +13,13 @@
             <Time isbooked="false">9pm-10pm</Time>
             <Time isbooked="false">3pm-5pm</Time>
         </Day>
-    </Availability>
+      </Availability>
   </Tutor>
   <Tutor>
-    <Name>Jane Bob</Name>
-    <Course>PHYS, CHEM, MATH</Course>
-    <Availability>
+      <Name>Jane Bob</Name>
+      <Course>PHYS, CHEM, MATH</Course>
+      <AvailableHours>3.5</AvailableHours>
+      <Availability>
         <Day day="Wednesday">
             <Time isbooked="false">8am-4pm</Time>
         </Day>
@@ -26,6 +28,6 @@
             <Time isbooked="false">2pm-5pm</Time>
             <Time isbooked="false">9pm-11pm</Time>
         </Day>
-    </Availability>
+      </Availability>
   </Tutor>
 </Tutors>

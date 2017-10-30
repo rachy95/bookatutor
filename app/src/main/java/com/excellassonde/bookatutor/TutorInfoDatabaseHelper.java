@@ -18,13 +18,17 @@ public class TutorInfoDatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_TUTOR_NAME = "name";
     private static final String COLUMN_TUTOR_EMAIL = "email";
     private static final String COLUMN_COURSES = "courses";
-    private static final String COLUMN_MAX_HOURS = "Available hours";
-    private static final String COLUMN_AVAILABILITY_ID = "";
+    private static final String COLUMN_MAX_HOURS = "maxHours";
+    private static final String COLUMN_AVAILABILITIES = "availabilities";
+    private static final String COLUMN_HOURS_BOOKED = "bookedHours";
+
+ //   private static final String COLUMN_AVAILABILITY_ID = "";
 
     SQLiteDatabase db;
 
     private static final String TABLE_CREATE = "create table studentInformation (id integer primary key not null, " +
-            "name text not null, email text not null, sessions text)";
+            "name text not null, email text not null, courses text not null, maxHours text not null, availabilities text not null, " +
+            "bookedHours text not null)";
 
     public TutorInfoDatabaseHelper(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -42,21 +46,28 @@ public class TutorInfoDatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(query);
         this.onCreate(db);
     }
-//
-//    public void insertTutor(TutorInformation tutor){
-//        db = this.getWritableDatabase();
-//        ContentValues values = new ContentValues();
-//
-//        //so that each id is unique, we get the count
-//        String query = "select * from tutorInformation";
-//        values.put(COLUMN_STUDENT_NAME, student.getStudentName());
-//        values.put(COLUMN_STUDENT_EMAIL, student.getStudentEmail());
-//        values.put(COLUMN_SESSION_IDs, student.getSessionIDs());
-//
-//        db.insert(TABLE_NAME, null, values);
-//        db.close();
-//    }
-//
+
+    public void insertTutor(TutorInformation tutor){
+        db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        //so that each id is unique, we get the count
+        String query = "select * from tutorInformation";
+        values.put(COLUMN_TUTOR_NAME, tutor.getTutorName());
+        values.put(COLUMN_TUTOR_EMAIL, tutor.getTutorEmail());
+        values.put(COLUMN_COURSES, tutor.getCourses());
+
+        db.insert(TABLE_NAME, null, values);
+        db.close();
+    }
+
+    public int getMaxHours(String tutorName){
+        int result = 0;
+        db = this.getReadableDatabase();
+        String query = "";
+        return result;
+    }
+
 //    public class AvailabilityDatabaseHelper extends SQLiteOpenHelper {
 //        private static final int DATABASE_VERSION = 1;
 //        private static final String DATABASE_NAME = "availabilty.db";

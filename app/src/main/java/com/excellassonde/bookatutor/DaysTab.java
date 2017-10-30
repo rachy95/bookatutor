@@ -37,20 +37,24 @@ public class DaysTab extends Fragment {
     //Define the tutor class
     public static class Tutor {
         public final String name;
+        public final double availableHours;
         public final List courses;
         public final Map<String, List> availability;
+        public double hoursBooked;
 
         /***
          * create a tutor with a name, a list of courses they teach and their availabilities
          * @param aName the full name of a tutor
          * @param listCourses A list of courses the tutor is willing to teach
+         * @param availableHours the hours a tutor is willing to tutor for
          * @param avails the times and days a tutor is available
          */
-        private Tutor(String aName, List listCourses, Map avails){
+        private Tutor(String aName, List listCourses, double availableHours, Map avails){
             this.name = aName;
             this.courses = listCourses;
             this.availability = avails;
-
+            this.availableHours = availableHours;
+            hoursBooked = 0;
         }
 
         /***
@@ -84,6 +88,28 @@ public class DaysTab extends Fragment {
          */
         public boolean teachCourse(String course){
             return courses.contains(course);
+        }
+
+        /***
+         *
+         * @return get the hours the tutor is willing to tutor for
+         */
+        public double getAvailableHours() {return this.availableHours;}
+
+        /***
+         *
+         * @param hours the amount of hours the tutor has been booked for
+         */
+        public void addToHoursBooked(double hours) {
+            hoursBooked += hours;
+        }
+
+        /***
+         *
+         * @return if the tutor has reached the available hours he is willing to tutor for
+         */
+        public boolean reachedMaximumHours(){
+            return this.hoursBooked >= this.availableHours;
         }
     }
 
@@ -136,6 +162,7 @@ public class DaysTab extends Fragment {
         parser.require(XmlPullParser.START_TAG, ns, "Tutor");
         String name = null;
         List courses = null;
+        double availableHours = 0;
         Map<String, List<Map.Entry<String, Boolean>>> availability = null;
 
         while (parser.next() != XmlPullParser.END_TAG){
@@ -149,11 +176,14 @@ public class DaysTab extends Fragment {
             else if (tag.equals("Course")){
                 courses = readCourse(parser);
             }
+            else if(tag.equals("AvailableHours")){
+                availableHours = readAvailableHours(parser);
+            }
             else if (tag.equals("Availability")){
                 availability = readAvailability(parser);
             }
         }
-        return new Tutor(name, courses, availability);
+        return new Tutor(name, courses, availableHours, availability);
     }
 
     //private method to parse the names of tutors
@@ -172,6 +202,14 @@ public class DaysTab extends Fragment {
 
         List<String> courses = Arrays.asList(course.split(", "));
         return courses;
+    }
+
+    //process the maxHours that the tutor is willing  to teach for
+    private double readAvailableHours(XmlPullParser parser) throws IOException, XmlPullParserException{
+        parser.require(XmlPullParser.START_TAG, ns, "AvailableHours");
+        String availability = readText(parser);
+        parser.require(XmlPullParser.END_TAG, ns, "AvailableHours");
+        return Double.parseDouble(availability);
     }
 
     //process the availability of the tutor, it returns the day as a key
@@ -348,11 +386,13 @@ public class DaysTab extends Fragment {
                         button.setPadding(20,20,20,20);
                         //integers needed for getting objects in a loop
                         final int finalJ = j;
+                        final int finalI = i;
                         button.setOnClickListener(new View.OnClickListener() {
                                                       public void onClick(View v) {
                                                           Intent intent1=new Intent(getActivity(), SessionReview.class);
                                                           //change the isBooked for that time to be true
                                                           //setTutorIsBooked(name, times.get(finalJ).getKey());
+                                                          ConfirmationPage.setReachedAvailableHours(tutors.get(finalI).reachedMaximumHours());
                                                           SessionReview.setTime(times.get(finalJ).getKey());
                                                           SessionReview.setTutorName(name);
                                                           SessionReview.setCourse(courseSelected);
@@ -377,6 +417,7 @@ public class DaysTab extends Fragment {
             layout.addView(displayTutors.get(i));
         }
     }
+
 
     //get the current day, if the student is checking on that day, then make it disabled
     private String getCurrentDay(){
