@@ -2,31 +2,34 @@
 <Tutors>
   <Tutor>
       <Name>John Doe</Name>
-      <Course>MATH, EECS</Course>
+      <Course>MATH, EECS, ENG, PSYC, SOCI, THEME, THINK, WHEN, YOU, WEEK, WICK, ZICK, SCROLL
+      </Course>
+      <PhoneNumber>6479962532</PhoneNumber>
       <AvailableHours>5</AvailableHours>
       <Availability>
         <Day day="Monday" >
-            <Time isbooked="true">9pm-10pm</Time>
-            <Time isbooked="false">3pm-5pm</Time>
+            <Time isbooked="true">9:00pm-10:00pm</Time>
+            <Time isbooked="false">3:00pm-5:00pm</Time>
         </Day>
         <Day day="Tuesday">
-            <Time isbooked="false">9pm-10pm</Time>
-            <Time isbooked="false">3pm-5pm</Time>
+            <Time isbooked="false">9:00pm-10:00pm</Time>
+            <Time isbooked="false">3:00pm-5:00pm</Time>
         </Day>
       </Availability>
   </Tutor>
   <Tutor>
       <Name>Jane Bob</Name>
+      <PhoneNumber>+16479962532</PhoneNumber>
       <Course>PHYS, CHEM, MATH</Course>
       <AvailableHours>3.5</AvailableHours>
       <Availability>
         <Day day="Wednesday">
-            <Time isbooked="false">8am-4pm</Time>
+            <Time isbooked="false">8:00am-4:00pm</Time>
         </Day>
         <Day day="Friday">
-            <Time isbooked="false">9am-10am</Time>
-            <Time isbooked="false">2pm-5pm</Time>
-            <Time isbooked="false">9pm-11pm</Time>
+            <Time isbooked="false">9:00am-10:00am</Time>
+            <Time isbooked="false">2:00pm-5:00pm</Time>
+            <Time isbooked="false">9:00pm-11:00pm</Time>
         </Day>
       </Availability>
   </Tutor>

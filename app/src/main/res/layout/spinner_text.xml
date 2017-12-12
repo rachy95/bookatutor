@@ -3,8 +3,8 @@
     android:id="@+id/spinner_text"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:textSize="18dp"
     android:gravity="center_vertical"
-    android:textAlignment="center"
-    android:textColor="@color/colorPrimary"/>
+    android:paddingLeft="10dp"
+    android:textColor="@color/colorPrimary"
+    android:textSize="18dp" />
 

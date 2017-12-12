@@ -8,4 +8,7 @@
     <color name="blue">#1976D2</color>
     <color name="lightBlue">#64B5F6</color>
     <color name="niceBlue">#2196F3</color>
+    <color name="holoBlue">#ff0099cc</color>
+    <color name="ELPurple">#4C00CD</color>
+
 </resources>

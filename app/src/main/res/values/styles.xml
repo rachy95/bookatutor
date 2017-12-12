@@ -13,5 +13,14 @@
         <item name="android:background">@drawable/spinner_background</item> 
     </style>
 
+    <style name="excelColor" parent="android:Theme.DeviceDefault.Light.NoActionBar.Fullscreen">
+        <item name="android:textColorPrimary">@color/niceBlue</item>
+        <item name="android:textColorPrimaryInverse">@color/niceBlue</item>
+        <item name="android:textColorSecondary">@color/niceBlue</item>
+        <item name="android:textColorSecondaryInverse">@color/niceBlue</item>
+        <item name="android:colorForeground">@color/ELPurple</item>
+        <item name="colorPrimary">@color/ELPurple</item>
+        <item name="colorAccent">@color/ELPurple</item>
+    </style>
 
 </resources>

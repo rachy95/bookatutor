@@ -1,58 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.excellassonde.bookatutor.ChooseCourseActivity">
+    tools:context=".ChooseCourseActivity">
 
-    <TextView
-        android:id="@+id/text_course_help"
-        android:layout_width="358dp"
-        android:layout_height="36dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="53dp"
-        android:fontFamily="serif"
-        android:textColor="@color/colorPrimary"
-        android:text="@string/Text_chooseCourse"
-        android:textSize="18sp"
-        android:textStyle="bold|italic"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginBottom="8dp"
-        android:paddingLeft="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/courses_dropdown"
-        app:layout_constraintVertical_bias="0.595" />
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/chooseCourse"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:weightSum="1">
 
-    <Spinner
-        android:id="@+id/courses_dropdown"
-        android:layout_width="245dp"
-        android:layout_height="46dp"
-        android:entries="@array/courses_list"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/btn_choose_tutor"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_course_help" />
-
-    <Button
-        android:id="@+id/btn_choose_tutor"
-        android:layout_width="246dp"
-        android:layout_height="48dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="422dp"
-        android:background="@drawable/button_background"
-        android:onClick="goToChooseDayAndTutor"
-        android:text="@string/button_chooseTutor"
-        android:textColor="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
-</android.support.constraint.ConstraintLayout>
+    </LinearLayout>
+</ScrollView>

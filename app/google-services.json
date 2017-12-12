@@ -1,0 +1,115 @@
+{
+  "project_info": {
+    "project_number": "431434480568",
+    "firebase_url": "https://fir-excellassonde.firebaseio.com",
+    "project_id": "firebase-excellassonde",
+    "storage_bucket": "firebase-excellassonde.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:431434480568:android:e55509ee2d5b3812",
+        "android_client_info": {
+          "package_name": "com.excellassonde.receiveasession"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "431434480568-c7nhd97nddjgu2ge71i58t343lt6td6c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.excellassonde.receiveasession",
+            "certificate_hash": "665865044a9428d95c1fe40e868dd9ad6333d954"
+          }
+        },
+        {
+          "client_id": "431434480568-s7sgh47en9r5tu3cv5g4t6gr7e0hnsr3.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "431434480568-e5l6eki6jaqvglml15cq7vmhqb618ila.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "431434480568-632epc4947d32mps5ils8ui23ff92gi3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDF57xLQDd1XwRgA3mU8JZtQmAtU7bEA10"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "431434480568-s7sgh47en9r5tu3cv5g4t6gr7e0hnsr3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:431434480568:android:c56bf474e5ff938f",
+        "android_client_info": {
+          "package_name": "com.excellassonde.bookatutor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "431434480568-aao44950ds9l3bt3ajmppkiqufu29tqr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.excellassonde.bookatutor",
+            "certificate_hash": "665865044a9428d95c1fe40e868dd9ad6333d954"
+          }
+        },
+        {
+          "client_id": "431434480568-s7sgh47en9r5tu3cv5g4t6gr7e0hnsr3.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "431434480568-e5l6eki6jaqvglml15cq7vmhqb618ila.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "431434480568-632epc4947d32mps5ils8ui23ff92gi3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDF57xLQDd1XwRgA3mU8JZtQmAtU7bEA10"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "431434480568-s7sgh47en9r5tu3cv5g4t6gr7e0hnsr3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

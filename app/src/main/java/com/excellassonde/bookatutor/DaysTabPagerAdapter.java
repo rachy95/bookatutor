@@ -8,11 +8,11 @@ import android.support.v4.app.FragmentPagerAdapter;
  * Created by PRAISEAyorinde on 2017-07-22.
  */
 
-class TabPagerAdapter extends FragmentPagerAdapter {
+class DaysTabPagerAdapter extends FragmentPagerAdapter {
     final int TAB_COUNT;
 
 
-    public TabPagerAdapter(FragmentManager supportFragmentManager, int numberOfTabs) {
+    public DaysTabPagerAdapter(FragmentManager supportFragmentManager, int numberOfTabs) {
         super(supportFragmentManager);
         this.TAB_COUNT = numberOfTabs;
     }

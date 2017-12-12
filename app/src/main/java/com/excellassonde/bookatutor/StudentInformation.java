@@ -11,32 +11,39 @@ import java.util.List;
 
 //will be used as the database to store the information of the student and the sessions that has been booked
 public class StudentInformation {
-    int id;
-    List<Integer> sessionIDs = new ArrayList<>();
-    String studentName, studentEmail;
+    private int id;
+    private List<Integer> sessionIDs;
+    private String studentName, studentEmail;
 
-    public void setId(int id){
-        this.id = id;
+    public StudentInformation() {
+        this.sessionIDs = new ArrayList<>();
+        this.studentName = "";
+        this.studentEmail = "";
+        this.id = 0;
     }
 
     public int getId(){
         return this.id;
     }
 
-    public void setStudentName(String name){
-        this.studentName = name;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getStudentName(){
         return this.studentName;
     }
 
-    public void setStudentEmail(String email){
-        this.studentEmail = email;
+    public void setStudentName(String name) {
+        this.studentName = name;
     }
 
     public String getStudentEmail(){
         return this.studentEmail;
+    }
+
+    public void setStudentEmail(String email) {
+        this.studentEmail = email;
     }
 
     public void addToSessions(int id){

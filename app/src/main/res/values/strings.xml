@@ -8,7 +8,7 @@
     <string name="Text_chooseCourse">Which Course would you like help in?</string>
     <string name="alert_beginning_text">Please confirm the following details</string>
     <string name="group_session_email">Please add here the emails of the other students joining the session</string>
-    <string name="hours_notification">Please note that this particular tutor has reached the available hours they are willing to tutor. This session might not be confirmed, we apologize for the inconvenience</string>
+    <string name="hours_notification">Please note that this particular tutor has reached the available hours they are willing to tutor. This session is not guaranteed to be confirmed</string>
     <string name="tutor_name">Tutor:</string>
     <string name="course_name">Course:</string>
     <string name="start_session">Starts:</string>
@@ -22,46 +22,6 @@
     <string-array name="time_list">
         <item>AM</item>
         <item>PM</item>
-    </string-array>
-    <string-array name="courses_list">
-        <item>EECS</item>
-        <item>MATH</item>
-        <item>PHYS</item>
-        <item>CHEM</item>
-        <item>ENG</item>
-        <item>EECS</item>
-        <item>MATH</item>
-        <item>PHYS</item>
-        <item>CHEM</item>
-        <item>ENG</item>
-        <item>EECS</item>
-        <item>MATH</item>
-        <item>PHYS</item>
-        <item>CHEM</item>
-        <item>ENG</item>
-        <item>EECS</item>
-        <item>MATH</item>
-        <item>PHYS</item>
-        <item>CHEM</item>
-        <item>ENG</item>
-        <item>EECS</item>
-        <item>MATH</item>
-        <item>PHYS</item>
-        <item>CHEM</item>
-        <item>ENG</item>
-        <item>ENG</item>
-        <item>EECS</item>
-        <item>MATH</item>
-        <item>PHYS</item>
-        <item>CHEM</item>
-        <item>ENG</item>
-        <item>ENG</item>
-        <item>EECS</item>
-        <item>MATH</item>
-        <item>PHYS</item>
-        <item>CHEM</item>
-        <item>ENG</item>
-
     </string-array>
     <string-array name="session_type_dropdown">
         <item>One-on-One</item>
